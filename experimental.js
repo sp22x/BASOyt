@@ -8,7 +8,7 @@
 // @grant        none
 // @run-at document-body
 // ==/UserScript==
-var vt_key = ["icc"];
+var vt_key = ["icc","cricket"];
 var targetNode = document.body;
 var config = { attributes: true, childList: true, subtree: true };
 var callback = function(mutationsList, observer) {
@@ -32,10 +32,7 @@ var callback = function(mutationsList, observer) {
 							console.log(rx.test(tmp2));
 							if(rx.test(tmp2))
 							{
-								console.log(tmp2);
-								console.log(ei.parentNode);
-								console.log(ei.parentNode.removeChild);
-								ei.parentNode.removeChild(ei);
+								ei.style.display = "none!important";
 							}
 						}
 
