@@ -11,8 +11,8 @@
 // ==/UserScript==
 
 var cid = null;
-var vt_key = ["avengers","marvel","spider(-| )*man","x-*men","cricket","icc","(angry )*prash","espn","cricinfo","eminem","emiway","chanchlani","carryminati","mrbeast","taarak","pubg","men in black","crime patrol","kapil sharma","dhoni","kohli"];
-var d_tl = ["breaking news","trending","carryminati","mrbeast","chanchlani"];
+var vt_key = ["keyword regex here"];
+var d_tl = ["breaking news","trending"];
 var tmp1 = JSON.parse(localStorage.getItem("vt_key"));  
 var tmp2 = JSON.parse(localStorage.getItem("d_tl"));
 if(tmp1)
