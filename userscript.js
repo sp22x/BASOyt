@@ -12,7 +12,22 @@
 
 var cid = null;
 var vt_key = ["avengers","marvel","spider(-| )*man","x-*men","cricket","icc","(angry )*prash","espn","cricinfo","eminem","emiway","chanchlani","carryminati","mrbeast","taarak","pubg","men in black","crime patrol","kapil sharma","dhoni","kohli"];
-var d_titles = ["breaking news","trending","carryminati","mrbeast","chanchlani"];
+var d_tl = ["breaking news","trending","carryminati","mrbeast","chanchlani"];
+var tmp1 = JSON.parse(localStorage.getItem("vt_key"));  
+var tmp2 = JSON.parse(localStorage.getItem("d_tl"));
+if(tmp1)
+{
+    vt_key = tmp1;
+}
+if(tmp2)
+{
+    d_tl = tmp2;
+}
+function lsUpdate()
+{
+    localStorage.setItem("vt_key",JSON.stringify(vt_key));
+    localStorage.setItem("d_tl",JSON.stringify(d_tl));
+}
 function frontpageBlocks()
 {
     var v_list = Array.from(document.querySelectorAll(".ytd-grid-video-renderer"));
@@ -36,7 +51,7 @@ function frontpageBlocks()
     var d_list = Array.from(document.querySelectorAll("div ytd-item-section-renderer"));
     for(i of d_list)
     {
-        for(j of d_titles)
+        for(j of d_tl)
         {
             if(i.querySelector("span"))
             {
@@ -59,4 +74,28 @@ function fmain()
 {
     url_proc(window.location.href);
 }
+var cid2 = null;
+function k_add_vt()
+{
+    var resp = prompt("Add New Keyword");
+    if(resp && resp.trim()!=="")
+    {
+        vt_key.push(resp);
+        d_tl.push(resp);
+        lsUpdate();
+    }
+}
+cid2 = setInterval(function(){
+    if(document.querySelector("#logo"))
+    {
+        var k_menu_button = document.createElement("button");
+        k_menu_button.style.backgroundColor = "grey";
+        k_menu_button.style.color = "white";
+        k_menu_button.style.border = "none";
+        k_menu_button.innerText = "Block";
+        document.querySelector("#logo").after(k_menu_button);
+        k_menu_button.onclick = k_add_vt;
+        clearInterval(cid2);
+    }
+},1000);
 cid = setInterval(fmain,1000);
