@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         MOBS EXP
-// @namespace    http://tampermonkey.net/
+// @name         (Experimental) Block Annoying Stuff on Youtube
+// @namespace    http://sp22x.github.io
 // @version      0.1
-// @description  try to take over the world!
-// @author       You
+// @description  Block Annoying Stuff on Youtube
+// @author       sp22x
 // @match        https://www.youtube.com/
 // @grant        none
 // @run-at document-body
@@ -23,13 +23,9 @@ var callback = function(mutationsList, observer) {
 					if(ei.tagName && ei.tagName.toLowerCase()==="ytd-grid-video-renderer")
 					{
 						var tmp2 = Array.from(ei.querySelectorAll("a")).map(function(e){return e.innerText;}).join(" ").trim();
-						console.log("-------");
-						console.log(tmp2);
 						for(var fl of vt_key)
 						{
-							console.log(fl);
 							var rx = new RegExp(fl,"i");
-							console.log(rx.test(tmp2));
 							if(rx.test(tmp2))
 							{
 								ei.style.display = "none!important";
