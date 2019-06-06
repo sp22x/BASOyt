@@ -23,13 +23,19 @@ var callback = function(mutationsList, observer) {
 					if(ei.tagName && ei.tagName.toLowerCase()==="ytd-grid-video-renderer")
 					{
 						var tmp2 = Array.from(ei.querySelectorAll("a")).map(function(e){return e.innerText;}).join(" ").trim();
+						console.log("-----");
+						console.log(tmp2);
 						for(var fl of vt_key)
 						{
 							var rx = new RegExp(fl,"i");
 							if(rx.test(tmp2))
 							{
-								ei.style.display = "none!important";
-							}
+                                console.log(fl);
+                                ei.style.display = "none";
+                                ei.style.visibility = "hidden";
+								console.log(ei.style.display);
+                                console.log(ei);
+                            }
 						}
 
 					}
