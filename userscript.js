@@ -145,7 +145,14 @@ function add_vt_box()
 	    	mbvtd.appendChild(a);
 	    	a.className = "mbox-elem";
 	    	a.onclick = mbinf;
-	    	document.querySelector("#mbvtd").appendChild(a);            
+            if(document.querySelector("#mbvtd").hasChildNodes())
+            {
+                document.querySelector("#mbvtd").insertBefore(a,document.querySelector("#mbvtd").children[0]);
+            }
+            else
+            {
+                document.querySelector("#mbvtd").appendChild(a);
+            }           
             this.value = "";
         }
     }
@@ -179,10 +186,16 @@ function add_vt_box()
     	a.style.border = "1px solid black";
     	a.style.borderRadius = "2px";
     	a.style.color = "purple";
-    	mbvtd.appendChild(a);
     	a.className = "mbox-elem";
     	a.onclick = mbinf;
-    	mbvtd.appendChild(a);
+        if(mbvtd.hasChildNodes())
+        {
+            mbvtd.insertBefore(a,mbvtd.children[0]);
+        }
+        else
+        {
+        	mbvtd.appendChild(a);
+        }
     }
     //----
     document.body.appendChild(mbox);

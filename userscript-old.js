@@ -11,9 +11,9 @@
 // ==/UserScript==
 
 var cid = null;
-var vt_key = []; //keyword regex here
+var vt_key = [];
 var d_tl = ["breaking news","trending"];
-var tmp1 = JSON.parse(localStorage.getItem("vt_key"));  
+var tmp1 = JSON.parse(localStorage.getItem("vt_key"));
 var tmp2 = JSON.parse(localStorage.getItem("d_tl"));
 if(tmp1)
 {
@@ -55,7 +55,7 @@ function frontpageBlocks()
         {
             if(i.querySelector("span"))
             {
-                if(i.querySelector("span").innerText.trim().toLowerCase() === j)
+                if(i.querySelector("span").innerText.trim().toLowerCase().indexOf(j.toLowerCase())!==-1)
                 {
                     i.parentNode.removeChild(i);
                 }
