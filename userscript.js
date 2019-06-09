@@ -52,12 +52,9 @@ function frontpageBlocks()
     {
         for(j of d_tl)
         {
-            if(i.querySelector("span"))
+            if(i.querySelector("span") && new RegExp(j,"i").test(i.querySelector("span").innerText.trim()))
             {
-                if(i.querySelector("span").innerText.trim().toLowerCase() === j)
-                {
-                    i.parentNode.removeChild(i);
-                }
+                i.parentNode.removeChild(i);
             }
         }
     }
@@ -107,44 +104,44 @@ function add_vt_box()
     //------
     var mbin = document.createElement("input");
     var mbinf = function()
-	{
-		var tmp = this.innerText
+    {
+        var tmp = this.innerText
 
-		vt_key = vt_key.filter(function(x){
-			return x!==tmp;
-		});
-		d_tl = d_tl.filter(function(x){
-			return x!==tmp;
-		});
-		ls_update();
-		this.parentNode.removeChild(this);
-		mbtext.innerText = "Changes will be applied after you refresh the page.";
-		var mbtext_rl = document.createElement("div");
-		mbtext_rl.style.color = "yellow";
-		mbtext_rl.innerText = "Click here to reload now.";
-		mbtext_rl.onclick = function()
-		{
-			window.location.reload();
-		}
-		mbtext.appendChild(mbtext_rl);
-		setTimeout(function(){
-			mbtext.innerText = "Enter new filter keyword";
-		},3000);
-	} 
+        vt_key = vt_key.filter(function(x){
+            return x!==tmp;
+        });
+        d_tl = d_tl.filter(function(x){
+            return x!==tmp;
+        });
+        ls_update();
+        this.parentNode.removeChild(this);
+        mbtext.innerText = "Changes will be applied after you refresh the page.";
+        var mbtext_rl = document.createElement("div");
+        mbtext_rl.style.color = "yellow";
+        mbtext_rl.innerText = "Click here to reload now.";
+        mbtext_rl.onclick = function()
+        {
+            window.location.reload();
+        }
+        mbtext.appendChild(mbtext_rl);
+        setTimeout(function(){
+            mbtext.innerText = "Enter new filter keyword";
+        },3000);
+    }
     mbin.onkeyup = function(e)
     {
         if(e.keyCode === 13)
         {
             add_vtkey(this.value);
-	    	var a = document.createElement("div");
-	    	a.innerText = this.value;
-	    	a.style.backgroundColor = "white";
-	    	a.style.border = "1px solid black";
-	    	a.style.borderRadius = "2px";
-	    	a.style.color = "purple";
-	    	mbvtd.appendChild(a);
-	    	a.className = "mbox-elem";
-	    	a.onclick = mbinf;
+            var a = document.createElement("div");
+            a.innerText = this.value;
+            a.style.backgroundColor = "white";
+            a.style.border = "1px solid black";
+            a.style.borderRadius = "2px";
+            a.style.color = "purple";
+            mbvtd.appendChild(a);
+            a.className = "mbox-elem";
+            a.onclick = mbinf;
             if(document.querySelector("#mbvtd").hasChildNodes())
             {
                 document.querySelector("#mbvtd").insertBefore(a,document.querySelector("#mbvtd").children[0]);
@@ -152,7 +149,7 @@ function add_vt_box()
             else
             {
                 document.querySelector("#mbvtd").appendChild(a);
-            }           
+            }
             this.value = "";
         }
     }
@@ -172,29 +169,29 @@ function add_vt_box()
     var qu = new Set();
     for(var i of d_tl)
     {
-    	qu.add(i);
+        qu.add(i);
     }
     for(i of vt_key)
     {
-    	qu.add(i);
+        qu.add(i);
     }
     for(i of qu)
     {
-    	var a = document.createElement("div");
-    	a.innerText = i;
-    	a.style.backgroundColor = "white";
-    	a.style.border = "1px solid black";
-    	a.style.borderRadius = "2px";
-    	a.style.color = "purple";
-    	a.className = "mbox-elem";
-    	a.onclick = mbinf;
+        var a = document.createElement("div");
+        a.innerText = i;
+        a.style.backgroundColor = "white";
+        a.style.border = "1px solid black";
+        a.style.borderRadius = "2px";
+        a.style.color = "purple";
+        a.className = "mbox-elem";
+        a.onclick = mbinf;
         if(mbvtd.hasChildNodes())
         {
             mbvtd.insertBefore(a,mbvtd.children[0]);
         }
         else
         {
-        	mbvtd.appendChild(a);
+            mbvtd.appendChild(a);
         }
     }
     //----
